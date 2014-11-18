@@ -1,6 +1,8 @@
-trainobs = 10
+rm(list=ls())
+
+trainobs = 100
 testobs  = 100
-experiments = 1000
+experiments = 100
 
 iterations = numeric()
 e_in = numeric()
@@ -22,6 +24,12 @@ f = function (x1, x2) {
 # run experiments
 for (i in 1: experiments){
     
+    # target function f in the [-1,1] * [-1,1] plane
+    # choose two random points L1 and L2
+    
+    p1 <- runif(2, -1, 1)
+    p2 <- runif(2, -1, 1)
+  
     # build a train set
     train = cbind(1,runif(trainobs,-1,1),runif(trainobs,-1,1))
 

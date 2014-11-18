@@ -22,6 +22,5 @@ In this case the response is a real-valued output. How do we choose the best hyp
 It's a kind of snapshot of how your hypothesis is doing on your dataset. We want to minimize the error with respect to the weights, which means to put 
 the first derivatives all equal to zero. This gives the formula to compute w by using the pseudo-inverse of X.
 
-                             ->p     - 1 ->p     
-mathbf{{boldsymbol{w}} =  {}(X    X )    X    Y}.,
+
 
