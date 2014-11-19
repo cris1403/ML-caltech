@@ -17,10 +17,13 @@ initial guess as to the separating plane’s weights, and then updates weights e
 In such cases, the algorithm changes the weights so that it behaves better on that particular point.
 You get a correct solution (the algorithm converges) if the data are linearly separable. 
 
-## The Linear Regression Model (Lecture 3)
+## The Linear Regression Model: one-step learning(Lecture 3)
+### Linear Regression 
 In this case the response is a real-valued output. How do we choose the best hypothesis? We want to minimize the squared error.
 It's a kind of snapshot of how your hypothesis is doing on your dataset. We want to minimize the error with respect to the weights, which means to put 
 the first derivatives all equal to zero. This gives the formula to compute w by using the pseudo-inverse of X.
 
+### Linear Regression for Classification
+Binary-valued functions are also real-valued. 
 
 

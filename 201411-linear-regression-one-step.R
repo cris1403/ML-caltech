@@ -2,21 +2,20 @@ rm(list=ls())
 library(fBasics)
 
 trainobs = 100
-testobs  = 1000
-experiments = 1000
+testobs  = 100
+experiments = 100
 
 e_in = numeric()
 e_out = numeric()
 
-
 line = function(x){
   b = (p2[2] - p1[2])/(p2[1]-p1[1])
-  a = (b * (x - p1[1])) + p1[2]
-  return(a)
+  y = (b * (x - p1[1])) + p1[2]
+  return(y)
 }
 
-f = function (x1, x2) {
-  if (x2 > line(x1)){return(1)}
+f = function (px1, px2) {
+  if (px2 > line(px1)){return(1)}
   else {return(-1)}
 }
 
@@ -24,7 +23,6 @@ for (i in 1: experiments){
   
   # pick a target function f (i.e a line in the [-1,1] * [-1,1] plane)
   # choose two random points p1 and p2
-  
   p1 <- runif(2, -1, 1)
   p2 <- runif(2, -1, 1)
   
@@ -50,8 +48,7 @@ for (i in 1: experiments){
 	}
 	
 	# compare g_train and f_train: e_in
-	cm = table(f_train,g_train)
-	e_in[i] = 1-sum(diag(cm))/sum(cm)
+	e_in[i] = sum(f_train != g_train) / trainobs
 	
 	# then build a test set
 	test = cbind(1,runif(testobs,-1,1),runif(testobs,-1,1))
@@ -69,10 +66,11 @@ for (i in 1: experiments){
 	}
 	
 	# compare g_test and f_test: e_out
-	cm = table(f_test,g_test)
-	e_out[i] = 1-sum(diag(cm))/sum(cm)
+	e_out[i] = sum(f_test != g_test) / testobs
 	
-	#cat("Experiment ", i, "In-sample error ", e_in[i], "Out-sample error", e_out[i], "\t", "\n")
+	cat("Experiment ", i, "In-sample error ", e_in[i], "Out-sample error", e_out[i], "\t", "\n")
+  
+  if (e_in[i]> 0.8){break}
   
 }
 
